@@ -1,0 +1,2 @@
+#!/bin/sh
+pip install -U dist/django-ifo-0.1.tar.gz
