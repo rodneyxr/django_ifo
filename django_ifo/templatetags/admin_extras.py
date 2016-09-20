@@ -16,10 +16,13 @@ def get_fieldsets_and_inlines(context):
 
     if hasattr(model_admin, 'fieldsets_and_inlines_order'):
         for choice in model_admin.fieldsets_and_inlines_order:
-            if choice == 'f':
-                fieldsets_and_inlines.append(('f', next(adminform)))
-            elif choice == 'i':
-                fieldsets_and_inlines.append(('i', next(inlines)))
+            try:
+                if choice == 'f':
+                    fieldsets_and_inlines.append(('f', next(adminform)))
+                elif choice == 'i':
+                    fieldsets_and_inlines.append(('i', next(inlines)))
+            except StopIteration:
+                pass
 
     for fieldset in adminform:
         fieldsets_and_inlines.append(('f', fieldset))
